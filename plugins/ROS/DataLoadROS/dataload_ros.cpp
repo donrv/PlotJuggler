@@ -69,7 +69,7 @@ void DataLoadROS::storeMessageInstancesAsUserDefined(PlotDataMapRef& plot_map,
 {
     using namespace RosIntrospection;
 
-    rosbag::View bag_view ( *_bag, ros::TIME_MIN, ros::TIME_MAX, true );
+    rosbag::View bag_view ( *_bag, ros::TIME_MIN, ros::TIME_MAX, false );
 
     RenamedValues renamed_value;
 

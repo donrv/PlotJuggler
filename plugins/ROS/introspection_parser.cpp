@@ -1,6 +1,7 @@
 #include "introspection_parser.h"
 #include "dialog_with_itemlist.h"
 #include "RosMsgParsers/geometry_msg_twist.h"
+#include "RosMsgParsers/diagnostic_msg.h"
 
 IntrospectionParser::IntrospectionParser()
 {
@@ -73,6 +74,10 @@ bool IntrospectionParser::registerSchema(const std::string &topic_name,
     else if( md5sum == ros::message_traits::MD5Sum<geometry_msgs::TwistStamped>::value() )
     {
         _builtin_parsers.insert( {topic_name, new GeometryMsgTwistStamped("/twist") } );
+    }
+    else if( md5sum == ros::message_traits::MD5Sum<diagnostic_msgs::DiagnosticArray>::value() )
+    {
+        _builtin_parsers.insert( {topic_name, new DisagnosticMsg() } );
     }
 }
 
